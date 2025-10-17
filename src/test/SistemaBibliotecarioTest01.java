@@ -9,7 +9,6 @@ import static dominio.enumeracao.StatusItem.*;
 
 public class SistemaBibliotecarioTest01 {
     public static void main(String[] args) {
-//        ArrayList<Livro> livrosDevolvidos = new ArrayList<>();
         ArrayList<Livro> livrosEmprestados = new ArrayList<>();
         Livro livro1 = new Livro("Cronicas de Narnia", 01, DISPONIVEL);
         Livro livro2 = new Livro("Cronicas de Jorde", 02, EMPRESTADO);
@@ -27,7 +26,7 @@ public class SistemaBibliotecarioTest01 {
 
         admin.emprestar(livro1, leitor);
         bibliotecario.devolver(livro1, leitor);
-        /*livro1.emprestar(leitor);*/
+
 
         leitor.imprimirDetalhes();
         livro1.imprimirDetalhes();
