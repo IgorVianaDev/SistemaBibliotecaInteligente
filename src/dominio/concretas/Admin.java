@@ -53,17 +53,7 @@ public class Admin extends Usuario {
 
     public void devolver(Livro livroDevolvido, Leitor leitor){
         livroDevolvido.setStatusItem(DISPONIVEL);
-        for (Livro leitorLivro : leitor.getLivros()) {
-            if (leitorLivro.equals(livroDevolvido)){
-                leitor.getLivros().remove(livroDevolvido);
-            }
-        }
+        leitor.getLivros().remove(livroDevolvido);
         System.out.println(livroDevolvido.getTitulo() + " Devolvido");
-    }
-
-    //Função exclusiva do Adm
-    public boolean alteraStatus(Livro livro, StatusItem statusItemDesejado) {
-        livro.setStatusItem(statusItemDesejado);
-        return true;
     }
 }

@@ -51,7 +51,6 @@ public class Bibliotecario extends Usuario {
     public void devolver(Livro livroDevolvido, Leitor leitor){
         livroDevolvido.setStatusItem(DISPONIVEL);
         leitor.getLivros().remove(livroDevolvido);
-
         System.out.println(livroDevolvido.getTitulo() + " Devolvido");
     }
 }

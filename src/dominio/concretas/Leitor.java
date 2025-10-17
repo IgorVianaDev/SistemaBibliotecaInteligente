@@ -26,12 +26,6 @@ public class Leitor extends Usuario{
         return false;
     }
 
-    public void addLivros(Livro livro){
-        if (livros.size() < 3){
-            livros.add(livro);
-        }
-    }
-
     @Override
     public void imprimirDetalhes() {
         System.out.print("Nome: " + getNome()+
