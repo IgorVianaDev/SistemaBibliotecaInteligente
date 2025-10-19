@@ -17,6 +17,7 @@ public class Periodico extends ItemBiblioteca{
     public boolean emprestar(Leitor leitor) {
         if (statusItem.equals(DISPONIVEL)){
             setStatusItem(EMPRESTADO);
+            leitor.getItem().add(this);
             return true;
         } else {
             System.out.println("Periódico não disponível para empréstimo");
@@ -28,6 +29,7 @@ public class Periodico extends ItemBiblioteca{
     public void devolver(Leitor leitor) {
         System.out.println(getTitulo() + " foi devolvido.");
         statusItem = StatusItem.DISPONIVEL;
+        leitor.getItem().remove(this);
     }
 
     @Override
@@ -38,11 +40,11 @@ public class Periodico extends ItemBiblioteca{
                 ", statusItem: " + statusItem);
     }
 
-    public boolean reservar(Periodico periodico, Leitor leitor) {
-        if (periodico.getStatusItem().equals(DISPONIVEL)) {
-            periodico.setStatusItem(RESERVADO);
-            leitor.getItem().add(periodico);
-            System.out.println(periodico.getTitulo() + " reservado pelo " + leitor.getNome());
+    public boolean reservar(Leitor leitor) {
+        if (getStatusItem().equals(DISPONIVEL)) {
+            setStatusItem(RESERVADO);
+            leitor.getItem().add(this);
+            System.out.println(getTitulo() + " reservado pelo " + leitor.getNome());
             return true;
         }
         return false;

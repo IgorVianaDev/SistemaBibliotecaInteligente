@@ -11,15 +11,21 @@ public class SistemaBibliotecarioTest01 {
     public static void main(String[] args) {
         Livro livro1 = new Livro("Cronicas de Narnia", 01, DISPONIVEL);
 
-        Periodico periodico1 = new Periodico("p1",5,DISPONIVEL);
+        Periodico periodico1 = new Periodico("Ciência da Informação",5,DISPONIVEL);
 
-        Leitor leitor = new Leitor("Igor", LEITOR);
+        Leitor leitor = new Leitor("Jiraya", LEITOR);
+        Leitor igor = new Leitor("Igor", LEITOR);
         Bibliotecario bibliotecario = new Bibliotecario("Vitor",BIBLIOTECARIO);
         Admin admin = new Admin("Micael",ADMIN);
 
         livro1.emprestar(leitor);
-        leitor.imprimirDetalhes();
+        periodico1.emprestar(leitor);
+
+        livro1.emprestar(igor);
 
         livro1.imprimirDetalhes();
+        periodico1.imprimirDetalhes();
+        leitor.imprimirDetalhes();
+        igor.imprimirDetalhes();
     }
 }

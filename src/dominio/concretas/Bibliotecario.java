@@ -25,10 +25,8 @@ public class Bibliotecario extends Usuario {
     public boolean emprestar(ItemBiblioteca itemBiblioteca, Leitor leitor) {
         if (itemBiblioteca == null || leitor == null) {
             return false;
-        } else if (itemBiblioteca.emprestar(leitor)) {
-            return itemBiblioteca.emprestar(leitor);
         }
-        return false;
+        return itemBiblioteca.emprestar(leitor);
     }
 
     public boolean reservar(ItemBiblioteca itemBiblioteca, Leitor leitor) {
