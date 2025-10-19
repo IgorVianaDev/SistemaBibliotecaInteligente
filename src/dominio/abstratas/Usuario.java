@@ -8,7 +8,6 @@ import dominio.interfaces.Imprivel;
 public abstract class Usuario implements Imprivel {
     private String nome;
     private NivelUsuario nivelUsuario;
-    private StatusItem statusItem;
 
     public Usuario(String nome, NivelUsuario nivelUsuario) {
         this.nome = nome;
@@ -33,11 +32,4 @@ public abstract class Usuario implements Imprivel {
         this.nivelUsuario = nivelUsuario;
     }
 
-    public StatusItem getStatusItem() {
-        return statusItem;
-    }
-
-    public void setStatusItem(StatusItem statusItem) {
-        this.statusItem = statusItem;
-    }
 }

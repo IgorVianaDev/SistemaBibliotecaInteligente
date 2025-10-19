@@ -8,16 +8,17 @@ import dominio.interfaces.Imprivel;
 
 import static dominio.enumeracao.StatusItem.*;
 
-public class Livro extends ItemBiblioteca implements Emprestavel, Imprivel {
+public class Livro extends ItemBiblioteca{
 
     public Livro(String titulo, int codigo, StatusItem statusItem) {
         super(titulo, codigo, statusItem);
     }
 
     @Override
-    public boolean emprestar(Usuario usuario) {
+    public boolean emprestar(Leitor leitor) {
         if (getStatusItem().equals(DISPONIVEL)){
             setStatusItem(EMPRESTADO);
+            leitor.getItem().add(this);
             return true;
         } else {
             System.out.println("Livro não disponível para empréstimo");
@@ -25,16 +26,18 @@ public class Livro extends ItemBiblioteca implements Emprestavel, Imprivel {
         }
     }
 
-    public boolean reservar(Livro livro, Leitor leitor) {
-        if (livro.getStatusItem().equals(DISPONIVEL)) {
-            livro.setStatusItem(RESERVADO);
+    public boolean reservar(Leitor leitor) {
+        if (getStatusItem().equals(DISPONIVEL)) {
+            setStatusItem(RESERVADO);
+            leitor.getItem().add(this);
+            System.out.println(getTitulo() + " reservado pelo " + leitor.getNome());
             return true;
         }
         return false;
     }
 
     @Override
-    public void devolver() {
+    public void devolver(Leitor Leitor) {
         System.out.println(getTitulo() + " foi devolvido.");
         statusItem = StatusItem.DISPONIVEL;
     }

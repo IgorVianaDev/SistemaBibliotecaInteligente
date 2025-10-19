@@ -1,5 +1,6 @@
 package dominio.concretas;
 
+import dominio.abstratas.ItemBiblioteca;
 import dominio.abstratas.Usuario;
 import dominio.enumeracao.NivelUsuario;
 import dominio.enumeracao.StatusItem;
@@ -25,35 +26,36 @@ public class Admin extends Usuario {
                 " | Nivel: " + getNivelUsuario());
     }
 
-    public boolean emprestar(Livro livro, Leitor leitor) {
-        if (livro == null || leitor == null) {
+    public boolean emprestar(ItemBiblioteca itemBiblioteca, Leitor leitor) {
+        if (itemBiblioteca == null || leitor == null) {
             return false;
-        } else if (livro.emprestar(leitor)) {
-            leitor.getLivros().add(livro);
+        } else if (itemBiblioteca.getStatusItem().equals(DISPONIVEL)) {
+            itemBiblioteca.setStatusItem(EMPRESTADO);
+            leitor.getItem().add(itemBiblioteca);
             return true;
         }
         return false;
     }
 
-    public boolean reservar(Livro livro, Leitor leitor) {
-        if (livro == null || leitor == null) {
+    public boolean reservar(ItemBiblioteca itemBiblioteca, Leitor leitor) {
+        if (itemBiblioteca == null || leitor == null) {
             return false;
-        } else if (livro.getStatusItem().equals(DISPONIVEL)) {
-            livro.setStatusItem(RESERVADO);
-            leitor.getLivros().add(livro);
+        } else if (itemBiblioteca.getStatusItem().equals(DISPONIVEL)) {
+            itemBiblioteca.setStatusItem(RESERVADO);
+            leitor.getItem().add(itemBiblioteca);
             return true;
         } else
             return false;
     }
 
-    public boolean atrasado(Livro livro, Leitor leitor){
-        livro.setStatusItem(ATRASADO);
+    public boolean atrasado(ItemBiblioteca itemBiblioteca, Leitor leitor){
+        itemBiblioteca.setStatusItem(ATRASADO);
         return true;
     }
 
-    public void devolver(Livro livroDevolvido, Leitor leitor){
-        livroDevolvido.setStatusItem(DISPONIVEL);
-        leitor.getLivros().remove(livroDevolvido);
-        System.out.println(livroDevolvido.getTitulo() + " Devolvido");
+    public void devolver(ItemBiblioteca itemBiblioteca, Leitor leitor){
+        itemBiblioteca.setStatusItem(DISPONIVEL);
+        leitor.getItem().remove(itemBiblioteca);
+        System.out.println(itemBiblioteca.getTitulo() + " Devolvido");
     }
 }

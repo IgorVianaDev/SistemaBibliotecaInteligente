@@ -1,9 +1,11 @@
 package dominio.abstratas;
 
+import dominio.concretas.Leitor;
 import dominio.enumeracao.StatusItem;
+import dominio.interfaces.Emprestavel;
 import dominio.interfaces.Imprivel;
 
-public abstract class ItemBiblioteca implements Imprivel {
+public abstract class ItemBiblioteca implements Imprivel, Emprestavel {
     protected String titulo;
     protected int codigo;
     protected StatusItem statusItem;
@@ -13,6 +15,11 @@ public abstract class ItemBiblioteca implements Imprivel {
         this.codigo = codigo;
         this.statusItem = statusItem;
     }
+
+    @Override
+    public abstract void devolver(Leitor Leitor);
+    @Override
+    public abstract boolean emprestar(Leitor leitor);
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
