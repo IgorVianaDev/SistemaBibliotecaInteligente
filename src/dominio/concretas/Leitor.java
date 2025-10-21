@@ -19,16 +19,11 @@ public class Leitor extends Usuario {
     }
 
     @Override
-    public boolean podeGerenciar() {
-        return false;
-    }
-
-    @Override
     public void imprimirDetalhes() {
         System.out.print("Nome: " + getNome() +
                 " | Nivel: " + getNivelUsuario());
         if (itensBiblioteca.isEmpty()) {
-            System.out.print(" Nenhum item!");
+            System.out.print(" | Nenhum item!");
         } else {
             System.out.print(" | ");
             for (ItemBiblioteca itens : itensBiblioteca) {

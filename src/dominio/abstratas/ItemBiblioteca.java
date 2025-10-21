@@ -29,7 +29,8 @@ public abstract class ItemBiblioteca implements Imprivel, Emprestavel, ControlaA
     public boolean emprestar(Leitor leitor){
         if (leitor == null) {
             return false;
-        } else if (getStatusItem().equals(DISPONIVEL)) {
+        } else if (getStatusItem().equals(EMPRESTADO)) {
+            System.out.println("Livro já está emprestado! Escolha outro.");
             setStatusItem(EMPRESTADO);
             leitor.getItensBiblioteca().add(this);
             return true;
@@ -50,9 +51,8 @@ public abstract class ItemBiblioteca implements Imprivel, Emprestavel, ControlaA
     }
 
     @Override
-    public void marcarAtraso(Leitor leitor) {
+    public void marcarAtraso(ItemBiblioteca itemBiblioteca, Leitor leitor) {
         setStatusItem(ATRASADO);
-        System.out.println(getTitulo() + " está atrasado");
     }
 
     public void setTitulo(String titulo) {

@@ -2,8 +2,6 @@ package test;
 
 import dominio.concretas.*;
 
-import java.util.ArrayList;
-
 import static dominio.enumeracao.NivelUsuario.*;
 import static dominio.enumeracao.StatusItem.*;
 
@@ -17,18 +15,23 @@ public class SistemaBibliotecarioTest01 {
         Bibliotecario bibliotecario = new Bibliotecario("Vitor",BIBLIOTECARIO);
         Admin admin = new Admin("Micael",ADMIN);
 
-        /*livro1.emprestar(leitor);
-        periodico1.emprestar(leitor);
-
         livro1.emprestar(igor);
 
         livro1.imprimirDetalhes();
-        periodico1.imprimirDetalhes();
-        leitor.imprimirDetalhes();
-        igor.imprimirDetalhes();*/
-
-        bibliotecario.emprestar(livro1,igor);
         igor.imprimirDetalhes();
+
+        System.out.println("==============================================");
+
+        livro1.emprestar(leitor);
+        leitor.imprimirDetalhes();
+
+        System.out.println("==============================================");
+
+        admin.marcarAtraso(livro1, igor);
         livro1.imprimirDetalhes();
+
+        System.out.println("==============================================");
+
+        leitor.marcarAtraso(livro1, igor);
     }
 }
