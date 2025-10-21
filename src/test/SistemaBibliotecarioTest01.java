@@ -10,7 +10,6 @@ import static dominio.enumeracao.StatusItem.*;
 public class SistemaBibliotecarioTest01 {
     public static void main(String[] args) {
         Livro livro1 = new Livro("Cronicas de Narnia", 01, DISPONIVEL);
-
         Periodico periodico1 = new Periodico("Ciência da Informação",5,DISPONIVEL);
 
         Leitor leitor = new Leitor("Jiraya", LEITOR);
@@ -18,7 +17,7 @@ public class SistemaBibliotecarioTest01 {
         Bibliotecario bibliotecario = new Bibliotecario("Vitor",BIBLIOTECARIO);
         Admin admin = new Admin("Micael",ADMIN);
 
-        livro1.emprestar(leitor);
+        /*livro1.emprestar(leitor);
         periodico1.emprestar(leitor);
 
         livro1.emprestar(igor);
@@ -26,6 +25,10 @@ public class SistemaBibliotecarioTest01 {
         livro1.imprimirDetalhes();
         periodico1.imprimirDetalhes();
         leitor.imprimirDetalhes();
+        igor.imprimirDetalhes();*/
+
+        bibliotecario.emprestar(livro1,igor);
         igor.imprimirDetalhes();
+        livro1.imprimirDetalhes();
     }
 }

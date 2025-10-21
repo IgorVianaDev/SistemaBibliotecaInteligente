@@ -10,7 +10,6 @@ import java.util.concurrent.ThreadPoolExecutor;
 import static dominio.enumeracao.StatusItem.*;
 
 public class Admin extends Usuario {
-
     public Admin(String nome, NivelUsuario nivelUsuario) {
         super(nome, nivelUsuario);
     }
@@ -27,35 +26,21 @@ public class Admin extends Usuario {
     }
 
     public boolean emprestar(ItemBiblioteca itemBiblioteca, Leitor leitor) {
-        if (itemBiblioteca == null || leitor == null) {
-            return false;
-        } else if (itemBiblioteca.getStatusItem().equals(DISPONIVEL)) {
-            itemBiblioteca.setStatusItem(EMPRESTADO);
-            leitor.getItem().add(itemBiblioteca);
-            return true;
-        }
-        return false;
+        return itemBiblioteca.emprestar(leitor);
     }
 
     public boolean reservar(ItemBiblioteca itemBiblioteca, Leitor leitor) {
-        if (itemBiblioteca == null || leitor == null) {
-            return false;
-        } else if (itemBiblioteca.getStatusItem().equals(DISPONIVEL)) {
-            itemBiblioteca.setStatusItem(RESERVADO);
-            leitor.getItem().add(itemBiblioteca);
-            return true;
-        } else
-            return false;
+        return itemBiblioteca.reservar(leitor);
     }
 
-    public boolean atrasado(ItemBiblioteca itemBiblioteca, Leitor leitor){
+    /*public boolean marcarAtraso(ItemBiblioteca itemBiblioteca, Leitor leitor){
         itemBiblioteca.setStatusItem(ATRASADO);
         return true;
     }
-
+*/
     public void devolver(ItemBiblioteca itemBiblioteca, Leitor leitor){
         itemBiblioteca.setStatusItem(DISPONIVEL);
-        leitor.getItem().remove(itemBiblioteca);
+        leitor.getItensBiblioteca().remove(itemBiblioteca);
         System.out.println(itemBiblioteca.getTitulo() + " Devolvido");
     }
 }

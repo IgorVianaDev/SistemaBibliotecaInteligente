@@ -3,23 +3,19 @@ package dominio.concretas;
 import dominio.abstratas.ItemBiblioteca;
 import dominio.abstratas.Usuario;
 import dominio.enumeracao.NivelUsuario;
-import dominio.enumeracao.StatusItem;
-import dominio.interfaces.Emprestavel;
 
 import java.util.ArrayList;
 
-import static dominio.enumeracao.StatusItem.DISPONIVEL;
-import static dominio.enumeracao.StatusItem.EMPRESTADO;
-
 public class Leitor extends Usuario {
-    private ArrayList<ItemBiblioteca> item = new ArrayList<>();
+    private ArrayList<ItemBiblioteca> itensBiblioteca = new ArrayList<>();
 
     public Leitor(String nome, NivelUsuario nivelUsuario) {
         super(nome, nivelUsuario);
     }
 
-    public Leitor(String nome, NivelUsuario nivelUsuario, ArrayList<ItemBiblioteca> item) {
+    public Leitor(String nome, NivelUsuario nivelUsuario, ArrayList<ItemBiblioteca> itensBiblioteca) {
         super(nome, nivelUsuario);
+        this.itensBiblioteca = itensBiblioteca;
     }
 
     @Override
@@ -31,23 +27,23 @@ public class Leitor extends Usuario {
     public void imprimirDetalhes() {
         System.out.print("Nome: " + getNome() +
                 " | Nivel: " + getNivelUsuario());
-        if (item.isEmpty()) {
+        if (itensBiblioteca.isEmpty()) {
             System.out.print(" Nenhum item!");
         } else {
             System.out.print(" | ");
-            for (ItemBiblioteca itens : item) {
+            for (ItemBiblioteca itens : itensBiblioteca) {
                 System.out.print(itens.getTitulo() + " | ");
             }
         }
         System.out.println();
     }
 
-    public ArrayList<ItemBiblioteca> getItem() {
-        return item;
+    public ArrayList<ItemBiblioteca> getItensBiblioteca() {
+        return itensBiblioteca;
     }
 
     public void setItem(ArrayList<ItemBiblioteca> item) {
-        this.item = item;
+        this.itensBiblioteca = item;
     }
 }
 

@@ -3,11 +3,14 @@ package dominio.concretas;
 import dominio.abstratas.ItemBiblioteca;
 import dominio.abstratas.Usuario;
 import dominio.enumeracao.NivelUsuario;
+import dominio.interfaces.Emprestavel;
+
+import java.security.spec.ECField;
 
 import static dominio.enumeracao.StatusItem.*;
 import static dominio.enumeracao.StatusItem.ATRASADO;
 
-public class Bibliotecario extends Usuario {
+public class Bibliotecario extends Usuario{
     public Bibliotecario(String nome, NivelUsuario nivelUsuario) {
         super(nome, nivelUsuario);
     }
@@ -19,35 +22,26 @@ public class Bibliotecario extends Usuario {
     }
     @Override
     public boolean podeGerenciar() {
-        return true;
+        return false;
     }
 
-    public boolean emprestar(ItemBiblioteca itemBiblioteca, Leitor leitor) {
-        if (itemBiblioteca == null || leitor == null) {
-            return false;
-        }
+
+    public boolean emprestar(ItemBiblioteca itemBiblioteca,Leitor leitor) {
         return itemBiblioteca.emprestar(leitor);
     }
 
     public boolean reservar(ItemBiblioteca itemBiblioteca, Leitor leitor) {
-        if (itemBiblioteca == null || leitor == null) {
-            return false;
-        } else if (itemBiblioteca.equals(DISPONIVEL)) {
-            itemBiblioteca.setStatusItem(RESERVADO);
-            leitor.getItem().add(itemBiblioteca);
-            return true;
-        }
-        return false;
+        return itemBiblioteca.reservar(leitor);
     }
 
-    public boolean atrasado(ItemBiblioteca itemBiblioteca) {
-        itemBiblioteca.setStatusItem(ATRASADO);
+    public boolean atrasado(ItemBiblioteca itemBiblioteca, Leitor leitor) {
+        itemBiblioteca.marcarAtraso(leitor);
         return true;
     }
 
     public void devolver(ItemBiblioteca itemBiblioteca, Leitor leitor){
         itemBiblioteca.setStatusItem(DISPONIVEL);
-        leitor.getItem().remove(itemBiblioteca);
+        leitor.getItensBiblioteca().remove(itemBiblioteca);
         System.out.println(itemBiblioteca.getTitulo() + " Devolvido");
     }
 }

@@ -15,34 +15,6 @@ public class Livro extends ItemBiblioteca{
     }
 
     @Override
-    public boolean emprestar(Leitor leitor) {
-        if (getStatusItem().equals(DISPONIVEL)){
-            setStatusItem(EMPRESTADO);
-            leitor.getItem().add(this);
-            return true;
-        } else {
-            System.out.println("Livro não disponível para empréstimo");
-            return false;
-        }
-    }
-
-    public boolean reservar(Leitor leitor) {
-        if (getStatusItem().equals(DISPONIVEL)) {
-            setStatusItem(RESERVADO);
-            leitor.getItem().add(this);
-            System.out.println(getTitulo() + " reservado pelo " + leitor.getNome());
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public void devolver(Leitor Leitor) {
-        System.out.println(getTitulo() + " foi devolvido.");
-        statusItem = StatusItem.DISPONIVEL;
-    }
-
-    @Override
     public void imprimirDetalhes() {
         System.out.println("Livro -> " +
                 "titulo: " + titulo + '\'' +

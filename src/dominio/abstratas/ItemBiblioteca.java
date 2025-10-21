@@ -2,10 +2,13 @@ package dominio.abstratas;
 
 import dominio.concretas.Leitor;
 import dominio.enumeracao.StatusItem;
+import dominio.interfaces.ControlaAtraso;
 import dominio.interfaces.Emprestavel;
 import dominio.interfaces.Imprivel;
 
-public abstract class ItemBiblioteca implements Imprivel, Emprestavel {
+import static dominio.enumeracao.StatusItem.*;
+
+public abstract class ItemBiblioteca implements Imprivel, Emprestavel, ControlaAtraso {
     protected String titulo;
     protected int codigo;
     protected StatusItem statusItem;
@@ -17,9 +20,40 @@ public abstract class ItemBiblioteca implements Imprivel, Emprestavel {
     }
 
     @Override
-    public abstract void devolver(Leitor Leitor);
+    public void devolver(Leitor leitor){
+        setStatusItem(DISPONIVEL);
+        leitor.getItensBiblioteca().remove(this);
+        System.out.println(getTitulo() + " Devolvido");
+    }
     @Override
-    public abstract boolean emprestar(Leitor leitor);
+    public boolean emprestar(Leitor leitor){
+        if (leitor == null) {
+            return false;
+        } else if (getStatusItem().equals(DISPONIVEL)) {
+            setStatusItem(EMPRESTADO);
+            leitor.getItensBiblioteca().add(this);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean reservar(Leitor leitor) {
+        if (leitor == null) {
+            return false;
+        } else if (getStatusItem().equals(DISPONIVEL)) {
+            setStatusItem(RESERVADO);
+            leitor.getItensBiblioteca().add(this);
+            return true;
+        } else
+            return false;
+    }
+
+    @Override
+    public void marcarAtraso(Leitor leitor) {
+        setStatusItem(ATRASADO);
+        System.out.println(getTitulo() + " está atrasado");
+    }
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
