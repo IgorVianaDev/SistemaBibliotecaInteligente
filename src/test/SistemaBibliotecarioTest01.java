@@ -20,19 +20,7 @@ public class SistemaBibliotecarioTest01 {
         livro1.imprimirDetalhes();
         igor.imprimirDetalhes();
 
-        System.out.println("==============================================");
 
-        livro1.emprestar(leitor);
-        leitor.imprimirDetalhes();
-
-        System.out.println("==============================================");
-
-        admin.marcarAtraso(livro1, igor);
-        livro1.imprimirDetalhes();
-
-        System.out.println("==============================================");
-
-        
 
     }
 }

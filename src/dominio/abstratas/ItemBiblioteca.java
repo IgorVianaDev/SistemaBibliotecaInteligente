@@ -29,11 +29,13 @@ public abstract class ItemBiblioteca implements Imprivel, Emprestavel, ControlaA
     public boolean emprestar(Leitor leitor){
         if (leitor == null) {
             return false;
-        } else if (getStatusItem().equals(EMPRESTADO)) {
-            System.out.println("Livro já está emprestado! Escolha outro.");
+        } else if (getStatusItem().equals(DISPONIVEL)) {
             setStatusItem(EMPRESTADO);
             leitor.getItensBiblioteca().add(this);
             return true;
+        } else if (getStatusItem().equals(EMPRESTADO)) {
+            System.out.println("Livro já está emprestado!");
+            return false;
         }
         return false;
     }
