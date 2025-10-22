@@ -19,6 +19,11 @@ public class Leitor extends Usuario {
     }
 
     @Override
+    public boolean podeGerenciar() {
+        return super.podeGerenciar();
+    }
+
+    @Override
     public void imprimirDetalhes() {
         System.out.print("Nome: " + getNome() +
                 " | Nivel: " + getNivelUsuario());

@@ -3,10 +3,11 @@ package dominio.concretas;
 import dominio.abstratas.ItemBiblioteca;
 import dominio.abstratas.Usuario;
 import dominio.enumeracao.NivelUsuario;
+import dominio.interfaces.ControlaAtraso;
 
 import static dominio.enumeracao.StatusItem.*;
 
-public class Bibliotecario extends Usuario{
+public class Bibliotecario extends Usuario implements ControlaAtraso {
     public Bibliotecario(String nome, NivelUsuario nivelUsuario) {
         super(nome, nivelUsuario);
     }
@@ -34,7 +35,9 @@ public class Bibliotecario extends Usuario{
 
     @Override
     public void marcarAtraso(ItemBiblioteca itemBiblioteca, Leitor leitor) {
-        super.marcarAtraso(itemBiblioteca, leitor);
+        if (podeGerenciar()){
+            itemBiblioteca.setStatusItem(ATRASADO);
+        }
     }
 
     public void devolver(ItemBiblioteca itemBiblioteca, Leitor leitor){

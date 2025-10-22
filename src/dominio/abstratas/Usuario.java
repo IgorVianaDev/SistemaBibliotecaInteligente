@@ -9,7 +9,7 @@ import dominio.interfaces.Imprivel;
 
 import static dominio.enumeracao.StatusItem.ATRASADO;
 
-public abstract class Usuario implements Imprivel , ControlaAtraso {
+public abstract class Usuario implements Imprivel {
     private String nome;
     private NivelUsuario nivelUsuario;
 
@@ -24,14 +24,6 @@ public abstract class Usuario implements Imprivel , ControlaAtraso {
         } else {
             System.out.println("Acesso negado!");
             return false;
-        }
-    }
-
-    @Override
-    public void marcarAtraso(ItemBiblioteca itemBiblioteca, Leitor leitor){
-        if (podeGerenciar()) {
-            itemBiblioteca.setStatusItem(ATRASADO);
-            System.out.println(leitor.getNome() + ", " + itemBiblioteca.getTitulo() + " está atrasado, por favor fazer a devolução.");
         }
     }
 

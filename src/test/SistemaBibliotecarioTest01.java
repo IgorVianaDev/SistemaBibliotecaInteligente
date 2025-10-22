@@ -32,6 +32,7 @@ public class SistemaBibliotecarioTest01 {
 
         System.out.println("==============================================");
 
-        leitor.marcarAtraso(livro1, igor);
+        
+
     }
 }
