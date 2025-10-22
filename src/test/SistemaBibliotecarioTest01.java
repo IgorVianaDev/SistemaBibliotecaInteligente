@@ -20,6 +20,18 @@ public class SistemaBibliotecarioTest01 {
         livro1.imprimirDetalhes();
         igor.imprimirDetalhes();
 
+        admin.reservar(periodico1, leitor);
+        periodico1.imprimirDetalhes();
+        leitor.imprimirDetalhes();
+
+        leitor.devolver(periodico1);
+        leitor.imprimirDetalhes();
+        periodico1.imprimirDetalhes();
+
+        igor.devolver(livro1);
+        igor.imprimirDetalhes();
+
+
 
 
     }

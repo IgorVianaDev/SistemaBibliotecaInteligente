@@ -8,6 +8,7 @@ import dominio.interfaces.Emprestavel;
 import dominio.interfaces.Imprivel;
 
 import static dominio.enumeracao.StatusItem.ATRASADO;
+import static dominio.enumeracao.StatusItem.DISPONIVEL;
 
 public abstract class Usuario implements Imprivel {
     private String nome;

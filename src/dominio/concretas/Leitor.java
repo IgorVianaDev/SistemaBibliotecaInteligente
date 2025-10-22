@@ -6,6 +6,8 @@ import dominio.enumeracao.NivelUsuario;
 
 import java.util.ArrayList;
 
+import static dominio.enumeracao.StatusItem.DISPONIVEL;
+
 public class Leitor extends Usuario {
     private ArrayList<ItemBiblioteca> itensBiblioteca = new ArrayList<>();
 
@@ -23,6 +25,11 @@ public class Leitor extends Usuario {
         return super.podeGerenciar();
     }
 
+    public void devolver(ItemBiblioteca itemBiblioteca){
+        itemBiblioteca.devolver(this);
+
+    }
+
     @Override
     public void imprimirDetalhes() {
         System.out.print("Nome: " + getNome() +
@@ -37,6 +44,7 @@ public class Leitor extends Usuario {
         }
         System.out.println();
     }
+
 
     public ArrayList<ItemBiblioteca> getItensBiblioteca() {
         return itensBiblioteca;
