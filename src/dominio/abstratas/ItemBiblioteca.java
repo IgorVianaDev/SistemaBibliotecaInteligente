@@ -21,7 +21,7 @@ public abstract class ItemBiblioteca implements Imprivel, Emprestavel, ControlaA
 
     @Override
     public void devolver(Leitor leitor){
-        boolean removido = leitor.getItensBiblioteca().removeIf(itemBiblioteca -> itemBiblioteca.equals(itemBiblioteca));
+        boolean removido = leitor.getItensBiblioteca().removeIf(item -> item.equals(this));
         if (removido){
             setStatusItem(DISPONIVEL);
             System.out.println(getTitulo() + " Devolvido");

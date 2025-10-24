@@ -30,8 +30,7 @@ public class SistemaBibliotecarioTest01 {
 
         igor.devolver(livro1);
         igor.imprimirDetalhes();
-
-
+        livro1.imprimirDetalhes();
 
 
     }
